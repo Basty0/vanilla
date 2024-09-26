@@ -14,7 +14,6 @@ import Produit from "./element/Produit";
 export default function Home() {
   return (
     <div className="mx-auto flex flex-col  justify-center items-center md:max-w-[80%] max-w-[90%]">
-      <Header />
       <Hero />
       <div className="mb-10">
         <h3 className="text-xl font-semibold mb-2">

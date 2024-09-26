@@ -4,9 +4,7 @@ import { ShoppingCart } from "lucide-react";
 
 const Header = () => {
   return (
-    <header className=" w-full py-4 m-2 z-10 transition-all duration-300">
-      {" "}
-      {/* Ajout de transition pour un effet fluide */}
+    <header className=" w-full py-4  z-10 transition-all duration-300">
       <div className="container flex justify-between items-center mx-auto">
         <div className=" items-center gap-2 justify-center flex">
           <Avatar className="border-2 border-primary">
@@ -23,11 +21,6 @@ const Header = () => {
                 <a href="/contact" className="hover:text-gray-400">
                   Contact
                 </a>
-              </Button>
-            </li>
-            <li className="">
-              <Button variant="outline" className="gap-2">
-                <ShoppingCart /> 20
               </Button>
             </li>
           </ul>

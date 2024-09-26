@@ -12,10 +12,10 @@ export const Hero = () => {
           Cultivée avec soin dans les régions de Sambava, Vohemar et Ambanja.
         </p>
         <Button asChild>
-          <a href="/products">Découvrez nos produits</a>
+          <a href="/produits">Découvrez nos produits</a>
         </Button>
       </div>
-      <div className="md:p-10 p-0 order-1 md:order-2">
+      <div className="md:p-10 p-0 order-1 w-[680px] ">
         <CarouselPlugin />
       </div>
     </section>

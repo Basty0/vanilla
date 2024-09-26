@@ -26,19 +26,18 @@ export function CarouselPlugin() {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full "
+      className="w-full  "
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
-      <CarouselContent className="rounded-xl">
+      <CarouselContent className="">
         {images.map((src, index) => (
           <CarouselItem key={index}>
             <div>
-              {/* Remplacement de Card par Image */}
               <img
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="w-full h-80 object-cover rounded-xl" // Assurez-vous que l'image couvre l'espace et soit carrée
+                className="w-full h-80 object-cover rounded-2xl"
               />
             </div>
           </CarouselItem>

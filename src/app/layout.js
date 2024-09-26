@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "./element/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,7 +27,10 @@ export default function RootLayout({ children }) {
             "url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA3L2pvYjE0NDgtYmFja2dyb3VuZC0wNGEteF8xLmpwZw.jpg')",
         }} // {{ edit_1 }}
       >
-        <div className="bg-white/60 backdrop-blur-xl">{children}</div>
+        <div className="bg-white/60 backdrop-blur-xl">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );
