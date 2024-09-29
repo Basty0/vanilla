@@ -1,31 +1,48 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+"use client";
 
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <header className=" w-full py-4  z-10 transition-all duration-300">
-      <div className="container flex justify-between items-center mx-auto">
-        <div className=" items-center gap-2 justify-center flex">
-          <Avatar className="border-2 border-primary">
-            <AvatarImage src="/images/logo.jpg" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <h1 className="text-md font-semibold-bold">Vanilla Export</h1>
-        </div>
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 m-2 rounded-xl",
+        isScrolled
+          ? "backdrop-blur-md bg-white/60 "
+          : "backdrop-blur-md bg-white"
+      )}
+    >
+      <nav className="container mx-auto px-6 py-4">
+        <div className="flex justify-between items-center">
+          <Link href="/" className="text-2xl font-bold text-primary">
+            vanilla.mg
+          </Link>
+          <div className="flex space-x-4">
+            <Link
+              href="/produits"
+              className="text-primary hover:text-primary-dark"
+            >
+              Produits
+            </Link>
 
-        <nav>
-          <ul className="flex space-x-4 items-center">
-            <li>
-              <Button asChild>
-                <a href="/contact" className="hover:text-gray-400">
-                  Contact
-                </a>
-              </Button>
-            </li>
-          </ul>
-        </nav>
-      </div>
+            <Link
+              href="/contact"
+              className="text-primary hover:text-primary-dark"
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
+      </nav>
     </header>
   );
 };

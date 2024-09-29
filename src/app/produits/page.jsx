@@ -114,9 +114,9 @@ const Page = () => {
   };
 
   return (
-    <div className="mx-auto flex flex-col items-center md:max-w-[90%] max-w-[90%]">
+    <div className="mx-auto flex flex-col items-center md:max-w-[90%]  mt-16 ">
       <h1 className="text-2xl font-bold">Produits</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 bg-white/60 backdrop-blur-xl p-4 rounded-xl">
         {produitsData.map((produit) => (
           <div className="relative p-2" key={produit.id}>
             <Card className="border-none shadow-none rounded-xl hover:shadow-xl transition-all duration-300 w-[300px]">

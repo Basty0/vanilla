@@ -7,12 +7,14 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
 export function CarouselPlugin() {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true, pauseOnMouseEnter: false }) // Ajout de pauseOnMouseEnter
+    Autoplay({ delay: 2000, stopOnInteraction: false, pauseOnMouseEnter: true }) // Ajout de pauseOnMouseEnter
   );
 
   const images = [
@@ -37,12 +39,14 @@ export function CarouselPlugin() {
               <img
                 src={src}
                 alt={`Image ${index + 1}`}
-                className="w-full h-80 object-cover rounded-2xl"
+                className="w-full h-96 object-cover rounded-2xl"
               />
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }
