@@ -149,7 +149,7 @@ export default function Header() {
 
       {isMenuOpen && (
         <div className="md:hidden">
-          <nav className="container mx-auto px-6 py-3 bg-white">
+          <nav className="container mx-auto px-6 py-3 bg-[#0e1f1c]">
             <ul className="flex flex-col gap-4">
               <li>
                 <Link href="/produits" onClick={toggleMenu}>

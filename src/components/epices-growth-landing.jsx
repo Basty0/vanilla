@@ -31,7 +31,7 @@ export function EpicesGrowthLandingComponent() {
   }, []);
 
   return (
-    <div className="container mx-auto  text-white">
+    <div className="container mx-auto  text-white md:pt-0 pt-40">
       <main>
         {/* <section className="relative px-4 py-16 h-screen text-center">
           <div className="absolute inset-0 overflow-hidden">
