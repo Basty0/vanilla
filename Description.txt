@@ -1,0 +1,193 @@
+
+Cahier des Charges pour l'Application de Vente en Ligne de Vanille
+
+
+1. Présentation du Projet
+
+L'objectif du projet est de développer une application web pour la vente d'épices, en particulier la vanille. L'application permettra aux clients de parcourir les produits, passer des commandes, évaluer les produits, et payer en ligne via Stripe. L'administration gérera les produits, les commandes, les clients, et les paiements. Le système comprendra des fonctionnalités avancées comme la gestion des avis, des notifications, et des statistiques de vente.
+
+
+2. Objectifs du Projet
+
+1. Permettre aux clients de :
+
+   - Parcourir et acheter des produits (épices, notamment la vanille).
+   - Créer et gérer leur compte utilisateur.
+   - Passer des commandes et les payer en ligne via Stripe.
+   - Ajouter des avis et attribuer des notes aux produits.
+   - Consulter l'historique des commandes.
+
+2. Permettre aux administrateurs de :
+   - Gérer les produits (ajout, modification, suppression).
+   - Gérer les catégories de produits.
+   - Gérer les clients et leurs comptes.
+   - Traiter les commandes et les paiements.
+   - Consulter les statistiques de vente.
+   - Gérer les avis clients (modération des commentaires).
+
+---
+
+3. Fonctionnalités du Client
+
+1. Inscription et Connexion
+
+   - Un client peut s'inscrire avec son email et créer un mot de passe.
+   - Connexion via email et mot de passe.
+   - Réinitialisation de mot de passe via email.
+
+2. Gestion du Compte
+
+   - Modifier les informations personnelles (nom, adresse email, mot de passe).
+   - Visualiser l'historique des commandes passées.
+   - Mettre à jour ses adresses de livraison et de facturation.
+
+3. Navigation et Recherche des Produits
+   - Parcourir les produits par catégories.
+   - Rechercher un produit spécifique avec un moteur de recherche.
+   - Voir les détails d’un produit, y compris les images, la description, le prix, la disponibilité.
+
+4. Ajout au Panier et Commandes
+
+   - Ajouter des produits au panier.
+   - Voir le panier avec les produits sélectionnés et les quantités.
+   - Modifier les quantités ou supprimer des produits du panier.
+   - Valider une commande avec l'adresse de livraison et le mode de paiement (Stripe).
+   - Suivi des statuts de la commande (en attente, payé, expédié, livré).
+
+5. Avis et Évaluations des Produits
+
+   - Laisser un commentaire sur un produit acheté.
+   - Attribuer une note sur 5 étoiles à un produit.
+   - Voir les avis des autres clients sur les produits.
+
+6. Paiement
+
+   - Paiement sécurisé via Stripe.
+   - Visualisation des factures pour chaque commande.
+   - Possibilité d’enregistrer un moyen de paiement pour faciliter les futurs achats.
+
+
+
+4. Fonctionnalités de l'Administrateur
+
+1. Gestion des Utilisateurs
+
+   - Visualisation de la liste des utilisateurs inscrits (clients).
+   - Modifier ou supprimer un utilisateur.
+   - Attribution de rôles (client ou administrateur).
+
+2. Gestion des Produits
+
+   - Créer de nouveaux produits avec :
+     - Nom du produit.
+     - Description.
+     - Prix.
+     - Statut (disponible ou non).
+     - Catégorie (assigner à une catégorie).
+     - Images (une ou plusieurs).
+   - Modifier les détails d’un produit.
+   - Supprimer un produit.
+
+3. Gestion des Catégories
+
+   - Créer de nouvelles catégories.
+   - Modifier ou supprimer une catégorie.
+   - Assigner des produits à des catégories.
+
+4. Gestion des Commandes
+
+   - Visualiser toutes les commandes des clients.
+   - Traiter les commandes (modifier le statut : en attente, payé, expédié, livré).
+   - Détails des commandes : produits commandés, quantités, montant total, client associé, adresse de livraison.
+   - Générer des factures PDF pour les commandes.
+
+5. **Gestion des Avis Clients**
+   - Voir les avis et commentaires des clients.
+   - Approuver, désapprouver ou supprimer un commentaire.
+   - Modérer les avis abusifs.
+
+6. **Gestion des Paiements**
+   - Suivi des paiements effectués via Stripe.
+   - Visualisation de l’état des paiements (succès, échec).
+   - Remboursements manuels en cas de besoin.
+
+7. **Statistiques et Rapports**
+   - Générer des rapports de vente mensuels et annuels (produits les plus vendus, revenus générés).
+   - Visualiser les statistiques de vente par produit et par catégorie.
+   - Suivi des performances : nombre de commandes par période, taux de conversion, moyenne des avis produits.
+
+8. **Notifications**
+   - Recevoir des notifications sur les nouvelles commandes.
+   - Notification en cas de paiement échoué.
+   - Alerte lorsqu’un produit devient indisponible ou arrive à épuisement.
+
+---
+
+### **5. Fonctionnalités Techniques Supplémentaires**
+
+1. **Intégration Stripe pour les paiements** :
+   - Gestion complète des transactions avec Stripe, y compris les remboursements et le suivi des paiements.
+   - Afficher les erreurs de paiement et permettre aux clients de réessayer le paiement.
+
+2. **Facturation et Gestion des Factures** :
+   - Génération automatique de factures PDF pour chaque commande.
+   - Archivage des factures pour les utilisateurs (disponible dans leur compte).
+   - L’administrateur peut consulter et télécharger les factures des clients.
+
+3. **Multi-images pour les produits** :
+   - Un produit peut avoir plusieurs images.
+   - Les images peuvent être ajoutées ou supprimées par l'administrateur.
+
+4. **Gestion des Stocks** :
+   - Gestion du stock pour chaque produit.
+   - Notifications automatiques lorsque le stock est bas.
+
+5. **Optimisation SEO et Performance** :
+   - URLs propres pour les produits et les catégories pour améliorer le référencement naturel.
+   - Optimisation des temps de chargement des pages grâce à la mise en cache.
+
+---
+
+### **6. Technologies Utilisées**
+
+1. **Backend** : Laravel (API RESTful)
+2. **Base de données** : MySQL ou PostgreSQL
+3. **Paiements** : Intégration Stripe
+4. **Gestion des fichiers et images** : Laravel Filesystem pour l'upload et la gestion des images.
+5. **Authentification et Gestion des rôles** : Laravel Jetstream ou Spatie Laravel Permission pour la gestion des rôles (client, administrateur).
+6. **Tests** : PHPUnit pour les tests automatisés.
+7. **Déploiement** : Hébergement cloud (AWS, Heroku, DigitalOcean, etc.).
+
+---
+
+### **7. Sécurité**
+
+1. **Protection des Données** :
+   - Chiffrement des données sensibles (mots de passe, informations de paiement).
+   - Utilisation de SSL/TLS pour sécuriser les transactions.
+   - Mesures contre les attaques XSS et CSRF.
+
+2. **Accès Rôles** :
+   - Les clients n’ont accès qu’à leur compte et leurs commandes.
+   - Les administrateurs peuvent gérer tout le système.
+
+---
+
+### **8. Déploiement et Maintenance**
+
+- **Environnement de Développement** : Devrait inclure des outils comme Docker pour l’isolation des environnements.
+- **Déploiement Continu** : Utilisation de Git pour le contrôle de version, avec des pipelines CI/CD pour automatiser les tests et les déploiements.
+- **Monitoring** : Mise en place d’un système de monitoring pour suivre les performances et détecter les erreurs en production.
+
+---
+
+### **9. Évolution Future**
+
+- **Programme de Fidélité** : Ajout d'un programme pour récompenser les clients fidèles avec des points pour chaque achat.
+- **Système d'Alertes** : Notifications par email ou SMS pour informer les clients des offres spéciales et des promotions.
+- **Gestion Avancée des Stocks** : Fonctionnalité pour suivre les réapprovisionnements et gérer les fournisseurs.
+
+---
+
+Ce cahier des charges fournit une base solide pour le développement de votre application de vente de vanille, en garantissant une gestion complète des produits, des commandes, des utilisateurs et des paiements, avec des fonctionnalités avancées pour répondre aux besoins à la fois des clients et des administrateurs.
+

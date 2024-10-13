@@ -1,78 +1,42 @@
 "use client";
-import React, { useState } from "react"; // Ajout de useState
+import React, { useEffect, useState } from "react";
 import { SheetDemo } from "./_components/SheetDemo";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { createOrder, getProductDetails, getProducts } from "@/lib/api";
+import { useParams } from "next/navigation";
+import { ProductDetail } from "@/components/product-detail";
+import { Star, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const Page = () => {
-  const [panier, setPanier] = useState([]); // État pour le panier
+  const [product, setProduct] = useState(null);
+  const { id } = useParams();
 
-  const produitsData = [
-    {
-      id: 1,
-      nom: "Produit 1",
-      description: "Description du produit 1",
-      image: "/images/vanille1.jpg", // Mise à jour de l'URL de l'image
-      prix: 10.99,
-    },
-    {
-      id: 2,
-      nom: "Produit 2",
-      description: "Description du produit 2",
-      image: "/images/vanille2.jpg", // Mise à jour de l'URL de l'image
-      prix: 12.99,
-    },
-    {
-      id: 2,
-      nom: "Produit 2",
-      description: "Description du produit 2",
-      image: "/images/vanille2.jpg", // Mise à jour de l'URL de l'image
-      prix: 12.99,
-    },
-    {
-      id: 2,
-      nom: "Produit 2",
-      description: "Description du produit 2",
-      image: "/images/vanille2.jpg", // Mise à jour de l'URL de l'image
-      prix: 12.99,
-    },
-    {
-      id: 3,
-      nom: "Produit 3",
-      description: "Description du produit 3",
-      image: "/images/vanille3.jpg", // Mise à jour de l'URL de l'image
-      prix: 9.99,
-    },
-    {
-      id: 4,
-      nom: "Produit 4",
-      description: "Description du produit 4",
-      image: "/images/vanille4.jpg", // Mise à jour de l'URL de l'image
-      prix: 11.99,
-    },
-    {
-      id: 5,
-      nom: "Produit 5",
-      description: "Description du produit 5",
-      image: "/images/vanille5.jpg", // Mise à jour de l'URL de l'image
-      prix: 13.99,
-    },
-    {
-      id: 6,
-      nom: "Produit 6",
-      description: "Description du produit 6",
-      image: "/images/vanille6.jpg", // Mise à jour de l'URL de l'image
-      prix: 14.99,
-    },
-  ];
+  useEffect(() => {
+    fetchProductDetails();
+  }, [id]);
+
+  const fetchProductDetails = async () => {
+    try {
+      const data = await getProducts();
+      setProduct(data);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des détails du produit:",
+        error
+      );
+    }
+  };
+
+  const [panier, setPanier] = useState([]); // État pour le panier
 
   const ajouterAuPanier = (produit) => {
     setPanier((prevPanier) => {
@@ -108,49 +72,104 @@ const Page = () => {
     setPanier([]);
   };
 
-  const commander = () => {
+  const commander = async () => {
+    console.log(panier);
     alert("Commande passée avec succès !");
+    await createOrder(panier);
     viderPanier();
   };
 
+  const calculateAverageRating = (avis) => {
+    if (!avis || avis.length === 0) return 0;
+    const sum = avis.reduce((acc, curr) => acc + curr.note, 0);
+    return sum / avis.length;
+  };
+
+  if (!product) {
+    return <div>Chargement...</div>;
+  }
+
   return (
-    <div className="mx-auto flex flex-col items-center   mt-16 ">
-      <h1 className="text-2xl font-bold">Produits</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 bg-white/60 backdrop-blur-xl p-4 rounded-xl">
-        {produitsData.map((produit) => (
-          <div className="relative p-2" key={produit.id}>
-            <Card className="border-none shadow-none rounded-xl hover:shadow-xl transition-all duration-300 w-[350px]">
+    <div className="container mx-auto px-4 py-16">
+      <h1 className="text-4xl font-bold mb-8">Nos Produits</h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {product.data.map((product) => {
+          const averageRating = calculateAverageRating(product.avis);
+          return (
+            <Card
+              key={product.id}
+              className="h-full flex flex-col shadow-none rounded-2xl bg-[#1a2e2a] text-white border-none"
+            >
               <CardHeader>
-                <CardTitle>{produit.nom}</CardTitle>
-                <CardDescription>{produit.description}</CardDescription>
-                <CardDescription className="text-xl font-bold">
-                  {produit.prix} €
-                </CardDescription>
+                <CardTitle className="text-white">{product.nom}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <img
-                  src={produit.image}
-                  alt={produit.nom}
-                  className="w-28 h-28 object-cover rounded-full absolute top-0 right-0 border-2"
+              <CardContent className="flex-grow">
+                <Image
+                  src={`http://127.0.0.1:8000/storage/${product.image}`}
+                  alt={product.nom}
+                  width={300}
+                  height={300}
+                  className="w-full h-48 object-cover mb-4 rounded-md"
                 />
+                <p className="text-sm text-gray-300 mb-2">
+                  {product.description.length > 100
+                    ? `${product.description.substring(0, 100)}...`
+                    : product.description}
+                </p>
+                <p className="font-bold text-lg">{product.prix} €</p>
+                <div className="flex items-center mt-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-5 h-5 ${
+                        i < Math.round(averageRating)
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                  <span className="ml-2 text-sm text-gray-300">
+                    ({averageRating.toFixed(1)})
+                  </span>
+                </div>
               </CardContent>
-              <CardFooter>
-                <Button onClick={() => ajouterAuPanier(produit)}>
-                  Ajouter au panier
-                </Button>
+              <CardFooter className="gap-4">
+                <div className="w-full flex justify-between">
+                  <Button
+                    onClick={() =>
+                      product.statut !== "indisponible" &&
+                      ajouterAuPanier(product)
+                    }
+                    className={`w-1/2 bg-white text-[#0e1f1c] hover:bg-gray-200 ${
+                      product.statut === "indisponible"
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
+                  >
+                    {product.statut === "indisponible"
+                      ? "Indisponible"
+                      : "Ajouter au panier"}
+                  </Button>
+                  <ProductDetail
+                    product={product}
+                    ajouterAuPanier={ajouterAuPanier}
+                  />
+                </div>
               </CardFooter>
             </Card>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
       <div className="fixed bottom-10 right-10 z-50">
         <SheetDemo
           panier={panier}
-          diminuerQuantite={diminuerQuantite} // Passer la fonction pour diminuer la quantité
+          diminuerQuantite={diminuerQuantite}
           supprimerDuPanier={supprimerDuPanier}
           viderPanier={viderPanier}
           commander={commander}
-          ajouterAuPanier={ajouterAuPanier} // Passer la fonction pour augmenter la quantité
+          ajouterAuPanier={ajouterAuPanier}
         />
       </div>
     </div>

@@ -1,8 +1,9 @@
-import Acueil from "./element/Acueil";
+import { EpicesGrowthLandingComponent } from "@/components/epices-growth-landing";
 const Page = () => {
   return (
     <div className="min-h-screen">
-      <Acueil />
+      {/* <Acueil /> */}
+      <EpicesGrowthLandingComponent />
     </div>
   );
 };

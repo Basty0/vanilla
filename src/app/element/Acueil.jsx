@@ -3,7 +3,16 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Facebook, Phone, Mail, MapPin } from "lucide-react";
+import {
+  ChevronRight,
+  Facebook,
+  Phone,
+  Mail,
+  MapPin,
+  Star,
+  User,
+  MapPinCheck,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -16,6 +25,7 @@ import {
 import { cn } from "@/lib/utils";
 import { CarouselPlugin } from "./_components/CarouselPlugin";
 import Apropo from "./Apropo";
+import { ProductDetail } from "@/components/product-detail";
 
 export default function Acueil() {
   const products = [
@@ -49,10 +59,10 @@ export default function Acueil() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col mt-20 ">
+    <div className="min-h-screen flex flex-col  ">
       <main className="flex-grow  ">
-        <section className="relative h-[80vh]   flex items-center justify-center  text-white">
-          <div className="absolute inset-0 overflow-hidden mx-2 ">
+        {/* <section className="relative h-screen   flex items-center justify-center  text-white">
+          <div className="absolute inset-0 overflow-hidden  ">
             <Image
               src="/images/vanille3.jpg"
               alt="Champs de vanille à Madagascar"
@@ -77,23 +87,67 @@ export default function Acueil() {
               </Link>
             </Button>
           </div>
-        </section>
+        </section> */}
+        {/* 
+        <ProductDetail /> */}
+        <section className="relative h-screen flex items-center justify-center ">
+          <div className="absolute inset-0 overflow-hidden ">
+            <Image
+              src="/images/bgv2.jpg"
+              alt="Champs de vanille à Madagascar"
+              layout="fill"
+              objectFit="cover"
+              priority
+            />
+          </div>
+          <div className="container backdrop-blur-md m-0 bg-white/40   relative z-10 mx-auto md:p-6 p-2  h-full w-full flex items-center">
+            <div className="grid md:grid-cols-2 gap-8 grid-cols-1 justify-center items-center ">
+              <div className="">
+                <h1 className="text-6xl font-bold mb-4 ">
+                  La meilleure vanille de Madagascar
+                </h1>
+                <p className="text-xl mb-4 ">
+                  Explorez notre collection de vanille, soigneusement cultivée
+                  dans les régions de Madagascar pour offrir une qualité
+                  exceptionnelle. Découvrez notre gamme de produits de vanille
+                  de qualité supérieure.
+                </p>
 
-        <section className="py-10">
-          <div className="container mx-auto bg-white/60 backdrop-blur-xl md:p-6 p-2 rounded-xl">
-            <h2 className="text-3xl font-bold  mb-4">
-              Notre sélection de vanille
-            </h2>
-            <p className="mb-4">
-              Découvrez notre sélection de vanille, cultivée avec passion à
-              Madagascar.
-            </p>
-            <CarouselPlugin />
+                <div className="flex flex-row items-center gap-4 mb-4">
+                  <div className="flex flex-col  gap-2">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Star className="w-6 h-6 text-yellow-500" />
+                      <span className="text-sm text-gray-500">
+                        <span className="text-yellow-500">4.5</span> / 5
+                      </span>
+                    </div>
+                  </div>
+                  <div className="border-l border-gray-200 h-6"></div>
+                  <div className="flex items-center gap-4">
+                    <div className="flex flex-row items-center gap-2 mb-4">
+                      <User className="w-6 h-6 text-yellow-500" />
+                      <span className="text-sm text-gray-500">
+                        +2500 clients
+                      </span>
+                    </div>
+                  </div>
+                  <div className="border-l border-gray-200 h-6"></div>
+                  <div className="flex  items-center gap-2 mb-4">
+                    <MapPinCheck className="w-6 h-6 text-yellow-500" />
+                    <span className="text-sm text-gray-500">Madagascar</span>
+                  </div>
+                </div>
+                <Button asChild size="lg">
+                  <Link href="/produits">Voir nos produits</Link>
+                </Button>
+              </div>
+              <CarouselPlugin />
+            </div>
           </div>
         </section>
 
         <section className="py-10 ">
-          <div className="container mx-auto  bg-white/60 backdrop-blur-xl md:p-6 p-2 rounded-xl">
+          <div className="container mx-auto   md:p-6 p-2 rounded-xl">
             <h2 className="text-3xl font-bold  mb-8">Notre histoire</h2>
             <div className="mb-10">
               <h3 className="text-xl font-semibold mb-2">
@@ -116,7 +170,7 @@ export default function Acueil() {
         </section>
 
         <section id="products" className="py-10">
-          <div className="container mx-auto  bg-white/60 backdrop-blur-xl md:p-6 p-2 rounded-xl">
+          <div className="container mx-auto   md:p-6 p-2 rounded-xl">
             <h2 className="text-3xl font-bold  mb-8">Nos produits</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {products.map((product) => (

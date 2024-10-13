@@ -1,0 +1,488 @@
+# API Documentation
+
+## Authentication
+
+### Register
+
+Register a new user account.
+
+- **URL**: `/api/register`
+- **Method**: `POST`
+- **Auth required**: No
+
+#### Request Body
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "password_confirmation": "password123"
+}
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "access_token": "1|abcdefghijklmnopqrstuvwxyz123456",
+  "token_type": "Bearer"
+}
+
+### Login
+
+Authenticate a user and receive a token.
+
+- **URL**: `/api/login`
+- **Method**: `POST`
+- **Auth required**: No
+
+#### Request Body
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "access_token": "2|abcdefghijklmnopqrstuvwxyz123456",
+  "token_type": "Bearer"
+}
+
+### Logout
+
+Invalidate the user's token.
+
+- **URL**: `/api/logout`
+- **Method**: `POST`
+- **Auth required**: Yes
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "message": "Logged out successfully"
+}
+
+### Forgot Password
+
+Send a password reset link to the user's email.
+
+- **URL**: `/api/forgot-password`
+- **Method**: `POST`
+- **Auth required**: No
+
+#### Request Body
+
+{
+  "email": "john@example.com"
+}
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "message": "Reset link sent to your email"
+}
+
+### Reset Password
+
+Reset the user's password using the token received by email.
+
+- **URL**: `/api/reset-password`
+- **Method**: `POST`
+- **Auth required**: No
+
+#### Request Body
+
+{
+  "token": "abcdefghijklmnopqrstuvwxyz123456",
+  "email": "john@example.com",
+  "password": "newpassword123",
+  "password_confirmation": "newpassword123"
+}
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "message": "Password reset successfully"
+}
+
+## Products
+
+### List Products
+
+Get a paginated list of products.
+
+- **URL**: `/api/products`
+- **Method**: `GET`
+- **Auth required**: No
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "current_page": 1,
+  "data": [
+    {
+      "id": 1,
+      "nom": "Vanille de Madagascar",
+      "description": "Gousses de vanille de haute qualité",
+      "prix": 29.99,
+      "categorie": {
+        "id": 1,
+        "nom": "Épices"
+      }
+    },
+    // ... more products
+  ],
+  "first_page_url": "http://example.com/api/products?page=1",
+  "from": 1,
+  "last_page": 5,
+  "last_page_url": "http://example.com/api/products?page=5",
+  "links": [
+    // ... pagination links
+  ],
+  "next_page_url": "http://example.com/api/products?page=2",
+  "path": "http://example.com/api/products",
+  "per_page": 15,
+  "prev_page_url": null,
+  "to": 15,
+  "total": 75
+}
+
+### Show Product
+
+Get details of a specific product.
+
+- **URL**: `/api/products/{product}`
+- **Method**: `GET`
+- **Auth required**: No
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "id": 1,
+  "nom": "Vanille de Madagascar",
+  "description": "Gousses de vanille de haute qualité",
+  "prix": 29.99,
+  "categorie": {
+    "id": 1,
+    "nom": "Épices"
+  },
+  "avis": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "note": 5,
+      "commentaire": "Excellente qualité !"
+    },
+    // ... more reviews
+  ]
+}
+
+### List Categories
+
+Get a list of all product categories.
+
+- **URL**: `/api/categories`
+- **Method**: `GET`
+- **Auth required**: No
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+[
+  {
+    "id": 1,
+    "nom": "Épices"
+  },
+  {
+    "id": 2,
+    "nom": "Herbes"
+  },
+  // ... more categories
+]
+
+### Products by Category
+
+Get a paginated list of products in a specific category.
+
+- **URL**: `/api/products/category/{category}`
+- **Method**: `GET`
+- **Auth required**: No
+
+#### Success Response
+
+- **Code**: 200
+- **Content**: (Similar to List Products response, but filtered by category)
+
+### Search Products
+
+Search for products by name or description.
+
+- **URL**: `/api/products/search`
+- **Method**: `POST`
+- **Auth required**: No
+
+#### Request Body
+
+{
+  "query": "vanille"
+}
+
+#### Success Response
+
+- **Code**: 200
+- **Content**: (Similar to List Products response, but filtered by search query)
+
+## Orders
+
+### List User Orders
+
+Get a paginated list of the authenticated user's orders.
+
+- **URL**: `/api/user/orders`
+- **Method**: `GET`
+- **Auth required**: Yes
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "current_page": 1,
+  "data": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "total": 59.98,
+      "created_at": "2023-05-01T12:00:00Z",
+      "produits": [
+        {
+          "id": 1,
+          "nom": "Vanille de Madagascar",
+          "prix": 29.99,
+          "pivot": {
+            "quantite": 2
+          }
+        }
+      ]
+    },
+    // ... more orders
+  ],
+  // ... pagination data
+}
+
+### Create Order
+
+Create a new order for the authenticated user.
+
+- **URL**: `/api/orders`
+- **Method**: `POST`
+- **Auth required**: Yes
+
+#### Request Body
+
+{
+  "products": [
+    {
+      "id": 1,
+      "quantity": 2
+    },
+    {
+      "id": 3,
+      "quantity": 1
+    }
+  ]
+}
+
+#### Success Response
+
+- **Code**: 201
+- **Content**:
+
+{
+  "id": 2,
+  "user_id": 2,
+  "total": 89.97,
+  "created_at": "2023-05-02T14:30:00Z",
+  "produits": [
+    {
+      "id": 1,
+      "nom": "Vanille de Madagascar",
+      "prix": 29.99,
+      "pivot": {
+        "quantite": 2
+      }
+    },
+    {
+      "id": 3,
+      "nom": "Poivre noir",
+      "prix": 29.99,
+      "pivot": {
+        "quantite": 1
+      }
+    }
+  ]
+}
+
+### Show Order
+
+Get details of a specific order.
+
+- **URL**: `/api/orders/{order}`
+- **Method**: `GET`
+- **Auth required**: Yes
+
+#### Success Response
+
+- **Code**: 200
+- **Content**: (Similar to the response of Create Order)
+
+## Reviews
+
+### Create Review
+
+Create a new review for a product.
+
+- **URL**: `/api/reviews`
+- **Method**: `POST`
+- **Auth required**: Yes
+
+#### Request Body
+
+{
+  "produit_id": 1,
+  "note": 5,
+  "commentaire": "Excellente qualité de vanille !"
+}
+
+#### Success Response
+
+- **Code**: 201
+- **Content**:
+
+{
+  "id": 3,
+  "user_id": 2,
+  "produit_id": 1,
+  "note": 5,
+  "commentaire": "Excellente qualité de vanille !",
+  "created_at": "2023-05-03T10:15:00Z",
+  "updated_at": "2023-05-03T10:15:00Z"
+}
+
+### Update Review
+
+Update an existing review.
+
+- **URL**: `/api/reviews/{review}`
+- **Method**: `PUT`
+- **Auth required**: Yes
+
+#### Request Body
+
+{
+  "note": 4,
+  "commentaire": "Très bonne qualité, mais un peu cher."
+}
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "id": 3,
+  "user_id": 2,
+  "produit_id": 1,
+  "note": 4,
+  "commentaire": "Très bonne qualité, mais un peu cher.",
+  "created_at": "2023-05-03T10:15:00Z",
+  "updated_at": "2023-05-03T11:30:00Z"
+}
+
+### Delete Review
+
+Delete a review.
+
+- **URL**: `/api/reviews/{review}`
+- **Method**: `DELETE`
+- **Auth required**: Yes
+
+#### Success Response
+
+- **Code**: 204
+- **Content**: No content
+
+## User
+
+### Show User Profile
+
+Get the authenticated user's profile information.
+
+- **URL**: `/api/user`
+- **Method**: `GET`
+- **Auth required**: Yes
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "id": 2,
+  "name": "John Doe",
+  "email": "john@example.com",
+  "created_at": "2023-04-01T09:00:00Z",
+  "updated_at": "2023-04-01T09:00:00Z"
+}
+
+### Update User Profile
+
+Update the authenticated user's profile information.
+
+- **URL**: `/api/user`
+- **Method**: `PUT`
+- **Auth required**: Yes
+
+#### Request Body
+
+{
+  "name": "John Smith",
+  "email": "john.smith@example.com"
+}
+
+#### Success Response
+
+- **Code**: 200
+- **Content**:
+
+{
+  "id": 2,
+  "name": "John Smith",
+  "email": "john.smith@example.com",
+  "created_at": "2023-04-01T09:00:00Z",
+  "updated_at": "2023-05-04T15:45:00Z"
+}
