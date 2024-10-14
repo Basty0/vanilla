@@ -56,7 +56,7 @@ export default function Header() {
       <nav className="container mx-auto px-6 py-3">
         <div className="flex justify-between items-center">
           <Link href="/" className="text-xl font-bold">
-            Vanille Shop
+            Vanilla MG Export
           </Link>
 
           <div className="hidden md:flex items-center gap-4">
