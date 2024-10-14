@@ -48,9 +48,9 @@ export function ProductDetail({ product, ajouterAuPanier }) {
 
   // Créer un tableau d'images à partir des données du produit
   const images = [
-    `http://127.0.0.1:8000/storage/${product.image}`,
+    `https://vanilla.sopera.mg/storage/${product.image}`,
     ...product.images.map(
-      (img) => `http://127.0.0.1:8000/storage/${img.image_url}`
+      (img) => `https://vanilla.sopera.mg/storage/${img.image_url}`
     ),
   ];
 

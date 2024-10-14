@@ -106,7 +106,7 @@ const Page = () => {
               </CardHeader>
               <CardContent className="flex-grow">
                 <Image
-                  src={`http://127.0.0.1:8000/storage/${product.image}`}
+                  src={`https://vanilla.sopera.mg/storage/${product.image}`}
                   alt={product.nom}
                   width={300}
                   height={300}
