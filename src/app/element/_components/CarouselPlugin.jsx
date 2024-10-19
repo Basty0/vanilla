@@ -20,34 +20,28 @@ export function CarouselPlugin() {
 
   const products = [
     {
-      src: "/images/vanille1.jpg",
+      src: "/images/bgv2.jpg",
       name: "Vanille Bourbon",
       price: "12.99€",
       rating: 4.5,
     },
     {
-      src: "/images/vanille2.jpg",
+      src: "/images/bgv3.jpg",
       name: "Vanille de Madagascar",
       price: "14.99€",
       rating: 4.8,
     },
     {
-      src: "/images/vanille3.jpg",
+      src: "/images/bgv4.jpg",
       name: "Vanille Tahitensis",
       price: "16.99€",
       rating: 4.7,
     },
     {
-      src: "/images/vanille4.jpg",
+      src: "/images/bgv5.jpg",
       name: "Vanille de Papouasie",
       price: "13.99€",
       rating: 4.3,
-    },
-    {
-      src: "/images/vanille5.jpg",
-      name: "Vanille du Mexique",
-      price: "11.99€",
-      rating: 4.2,
     },
   ];
 

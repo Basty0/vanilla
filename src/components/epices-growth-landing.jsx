@@ -21,10 +21,10 @@ import { CarouselPlugin } from "@/app/element/_components/CarouselPlugin";
 import GalerieEpicesComponent from "./galerie-epices";
 
 const carouselImages = [
-  "/img/pop1.jpg",
-  "/img/pop2.jpg",
-  "/img/pop3.jpg",
-  "/img/pop4.jpg",
+  "/images/bgv2.jpg",
+  "/images/bgv3.jpg",
+  "/images/bgv4.jpg",
+  "/images/bgv5.jpg",
 ];
 
 export function EpicesGrowthLandingComponent() {
