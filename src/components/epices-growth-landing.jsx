@@ -2,7 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, MapPinCheck, Star, User } from "lucide-react";
+import {
+  Award,
+  ChevronRight,
+  Lock,
+  MapPinCheck,
+  Shield,
+  Star,
+  Tag,
+  Truck,
+  User,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,10 +21,10 @@ import { CarouselPlugin } from "@/app/element/_components/CarouselPlugin";
 import GalerieEpicesComponent from "./galerie-epices";
 
 const carouselImages = [
-  "/images/bgv2.jpg",
-  "/images/bgv1.jpg",
-  "/images/bgv4.jpg",
-  "/images/bgv5.jpg",
+  "/img/pop1.jpg",
+  "/img/pop2.jpg",
+  "/img/pop3.jpg",
+  "/img/pop4.jpg",
 ];
 
 export function EpicesGrowthLandingComponent() {
@@ -74,14 +84,15 @@ export function EpicesGrowthLandingComponent() {
           <div className="backdrop-blur-md m-0 bg-[#0e1f1c]/60   relative z-10 mx-auto md:p-6 p-2  h-full w-full flex items-center">
             <div className="grid md:grid-cols-2 gap-8 grid-cols-1 justify-center items-center ">
               <div className="">
-                <h1 className="text-6xl font-bold mb-4 ">
-                  La meilleure vanille de Madagascar
+                <h1 className="text-5xl font-bold mb-4 ">
+                  L'Art de la Vanille de Madagascar, à Votre Portée
                 </h1>
                 <p className="text-xl mb-4 ">
-                  Explorez notre collection de vanille, soigneusement cultivée
-                  dans les régions de Madagascar pour offrir une qualité
-                  exceptionnelle. Découvrez notre gamme de produits de vanille
-                  de qualité supérieure.
+                  Offrez-vous l'élégance de la vanille de Madagascar, cultivée
+                  avec passion et dévouement. Nos gousses sont soigneusement
+                  sélectionnées pour apporter à vos créations une saveur douce
+                  et raffinée. Chaque produit reflète l'excellence de notre
+                  terroir et le savoir-faire unique de nos producteurs locaux.
                 </p>
 
                 <div className="flex flex-row items-center gap-4 mb-4">
@@ -120,12 +131,16 @@ export function EpicesGrowthLandingComponent() {
           <section className=" mt-16 ">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-[#1a2e2a] p-6 rounded-xl">
-                <h4 className="text-xl font-semibold mb-2">Épices Exotiques</h4>
-                <p className="text-sm text-gray-300 mb-4">
-                  Découvrez des saveurs uniques du monde entier
+                <h4 className="text-xl font-semibold mb-2">
+                  Vanille Noire Premium
+                </h4>
+                <p className="text-sm text-gray-300 mb-4 h-20">
+                  Découvrez notre vanille noire de première qualité, récoltée et
+                  séchée avec soin à Madagascar pour une saveur intense et
+                  authentique.
                 </p>
                 <Image
-                  src="/images/bgv1.jpg"
+                  src="/img/noir3.jpg"
                   alt="Épices exotiques"
                   width={300}
                   height={200}
@@ -134,13 +149,15 @@ export function EpicesGrowthLandingComponent() {
               </div>
               <div className="bg-[#1a2e2a] p-6 rounded-xl">
                 <h4 className="text-xl font-semibold mb-2">
-                  Mélanges Signature
+                  Poudre de Vanille Pure
                 </h4>
-                <p className="text-sm text-gray-300 mb-4">
-                  Nos compositions exclusives pour vos recettes
+                <p className="text-sm text-gray-300 mb-4 h-20">
+                  Notre poudre de vanille 100% pure ajoute une touche d'exotisme
+                  à toutes vos créations culinaires. Parfaite pour sublimer vos
+                  desserts et pâtisseries.
                 </p>
                 <Image
-                  src="/images/bgv2.jpg"
+                  src="/img/poudre.jpg"
                   alt="Mélanges signature"
                   width={300}
                   height={200}
@@ -148,12 +165,16 @@ export function EpicesGrowthLandingComponent() {
                 />
               </div>
               <div className="bg-[#1a2e2a] p-6 rounded-xl">
-                <h4 className="text-xl font-semibold mb-2">Épices Bio</h4>
-                <p className="text-sm text-gray-300 mb-4">
-                  100% naturelles et certifiées biologiques
+                <h4 className="text-xl font-semibold mb-2">
+                  Caviar de Vanille
+                </h4>
+                <p className="text-sm text-gray-300 mb-4 h-20">
+                  Un luxe pour vos recettes! Les graines de caviar de vanille
+                  apportent une explosion de saveur intense et raffinée à vos
+                  plats les plus délicats.
                 </p>
                 <Image
-                  src="/images/bgv3.jpg"
+                  src="/img/cvr.jpg"
                   alt="Épices bio"
                   width={300}
                   height={200}
@@ -204,88 +225,113 @@ export function EpicesGrowthLandingComponent() {
           </section>
 
           <section className="py-16">
-            <h3 className="text-4xl font-bold mb-8">Collections d'Épices</h3>
+            <h3 className="text-4xl font-bold mb-8">
+              Pourquoi Choisir Nos Services ?
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-[#1a2e2a] p-6 rounded-xl flex justify-between items-center">
                 <div>
                   <h4 className="text-xl font-semibold mb-2">
-                    Épices Indiennes
+                    Livraison Offerte
                   </h4>
                   <p className="text-sm text-gray-300">
-                    L'essence de la cuisine indienne
+                    Profitez de la livraison Sécurisé pour toute commande
                   </p>
                 </div>
-                <ChevronRight className="w-6 h-6" />
+                <Truck className="w-6 h-6" />
               </div>
               <div className="bg-[#1a2e2a] p-6 rounded-xl flex justify-between items-center">
                 <div>
                   <h4 className="text-xl font-semibold mb-2">
-                    Épices Méditerranéennes
+                    Garantie Satisfaction
                   </h4>
-                  <p className="text-sm text-gray-300">Les saveurs du sud</p>
+                  <p className="text-sm text-gray-300">
+                    Nous garantissons la qualité de nos produits
+                  </p>
                 </div>
-                <ChevronRight className="w-6 h-6" />
+                <Shield className="w-6 h-6" />
               </div>
               <div className="bg-[#1a2e2a] p-6 rounded-xl flex justify-between items-center">
                 <div>
                   <h4 className="text-xl font-semibold mb-2">
-                    Épices pour Grillades
+                    Promotions Régulières
                   </h4>
                   <p className="text-sm text-gray-300">
-                    Parfaites pour vos barbecues
+                    Bénéficiez de réductions exclusives
                   </p>
                 </div>
-                <ChevronRight className="w-6 h-6" />
+                <Tag className="w-6 h-6" />
               </div>
               <div className="bg-[#1a2e2a] p-6 rounded-xl flex justify-between items-center">
                 <div>
                   <h4 className="text-xl font-semibold mb-2">
-                    Épices pour Pâtisserie
+                    Paiement Sécurisé
                   </h4>
                   <p className="text-sm text-gray-300">
-                    Donnez du goût à vos desserts
+                    Vos transactions sont 100% sécurisées
                   </p>
                 </div>
-                <ChevronRight className="w-6 h-6" />
+                <Lock className="w-6 h-6" />
+              </div>
+              <div className="bg-[#1a2e2a] p-6 rounded-xl flex justify-between items-center md:col-span-2">
+                <div>
+                  <h4 className="text-xl font-semibold mb-2">
+                    Produits de Qualité Supérieure
+                  </h4>
+                  <p className="text-sm text-gray-300">
+                    Nous sélectionnons uniquement les meilleures épices pour
+                    vous
+                  </p>
+                </div>
+                <Award className="w-6 h-6" />
               </div>
             </div>
           </section>
 
           <section className="py-16">
             <h3 className="text-4xl font-bold mb-8">
-              Épices de Qualité & Produits Sélectionnés
+              Les Epices de Madagascar: Un Voyage de Saveurs Authentiques
             </h3>
             <p className="mb-8 text-lg">
-              Nous proposons une sélection soigneusement choisie d'épices
-              premium et de produits spécialisés qui sublimeront votre cuisine
-              et apporteront des saveurs authentiques à votre table.
+              Madagascar est reconnu pour ses épices de qualité supérieure,
+              cultivées depuis des siècles. La vanille, introduite au XIXe
+              siècle, est réputée pour ses arômes raffinés et son procédé de
+              pollinisation manuel. Le poivre, aux saveurs riches et complexes,
+              et le gingembre connu pour ses vertus piquantes, sont également
+              des trésors de l'île. Chaque épice est cultivée avec soin,
+              respectant les traditions et les méthodes ancestrales, pour offrir
+              des saveurs authentiques à travers le monde.
             </p>
             <GalerieEpicesComponent />
           </section>
-
           <section className="py-16">
-            <h3 className="text-4xl font-bold mb-8">Foire Aux Questions</h3>
+            <h3 className="text-4xl font-bold mb-8">À Propos de Nous et FAQ</h3>
             <div className="space-y-4">
               {[
                 {
-                  question: "Commande pour livraison ?",
+                  question: "Qui sommes-nous ?",
                   answer:
-                    "Livraison gratuite pour toute commande supérieure à 50€.",
+                    "Nous sommes une entreprise familiale passionnée, enracinée dans la tradition malgache des épices depuis plus de 50 ans. Notre histoire est celle d'un amour profond pour les saveurs authentiques et d'un engagement inébranlable envers la qualité. Chaque génération a contribué à enrichir notre expertise, faisant de nous les gardiens d'un savoir-faire unique dans la sélection et la préparation des meilleures épices de Madagascar.",
                 },
                 {
-                  question: "Service de mouture",
+                  question: "D'où proviennent nos produits ?",
                   answer:
-                    "Nous proposons un service de mouture gratuit sur demande.",
+                    "Nos épices sont le trésor de la région SAVA de Madagascar, réputée mondialement pour la qualité exceptionnelle de ses produits. Cette région, bénie par un climat unique et des sols riches, est le berceau de nos vanilles, poivres, et autres épices exquises. Nous travaillons en étroite collaboration avec des producteurs locaux, garantissant non seulement une qualité incomparable mais aussi un impact positif sur les communautés locales. Chaque épice que vous achetez chez nous raconte l'histoire de cette terre fertile et du savoir-faire ancestral de ses habitants.",
                 },
                 {
-                  question: "Livraison internationale ?",
+                  question: "Quels sont nos services ?",
                   answer:
-                    "Oui, nous livrons dans certains pays du monde entier.",
+                    "Nous offrons bien plus que de simples épices - nous vous proposons une expérience gustative complète. Notre gamme premium comprend des épices rares et des mélanges exclusifs. Notre service de mouture sur demande vous garantit une fraîcheur optimale. Nos experts sont à votre disposition pour des conseils personnalisés, vous aidant à sublimer vos plats. Participez à nos ateliers de découverte pour un voyage sensoriel au cœur des épices malgaches. Chaque service est conçu pour vous faire vivre une aventure culinaire unique et inoubliable.",
                 },
                 {
-                  question: "Retrait en boutique ?",
+                  question: "Comment passer commande ?",
                   answer:
-                    "Le retrait en boutique est disponible dans notre magasin du centre-ville.",
+                    "Commander nos épices d'exception n'a jamais été aussi simple ! Explorez notre boutique en ligne pour découvrir notre sélection exquise, ou appelez-nous pour un conseil personnalisé. Pour une expérience immersive, visitez notre boutique physique où vous pourrez sentir et goûter nos produits. Nous offrons la livraison gratuite pour toute commande supérieure à 5kg, vous permettant de faire le plein de saveurs sans contrainte. N'attendez plus pour transformer votre cuisine avec nos épices de qualité supérieure !",
+                },
+                {
+                  question: "Proposez-vous des produits pour professionnels ?",
+                  answer:
+                    "Absolument ! Nous comprenons les exigences uniques des professionnels de la gastronomie. Notre gamme spéciale pour les chefs et l'industrie alimentaire offre des épices en plus grands formats, des mélanges sur mesure et des produits rares pour sublimer vos créations culinaires. Que vous soyez un restaurant étoilé, un traiteur innovant ou une entreprise agroalimentaire, nos épices de Madagascar apporteront une touche d'excellence à vos produits. Contactez-nous pour découvrir comment nos épices peuvent devenir le secret de votre succès culinaire !",
                 },
               ].map((faq) => (
                 <details

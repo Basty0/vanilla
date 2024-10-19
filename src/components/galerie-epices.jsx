@@ -57,20 +57,20 @@ const CarouselCard = ({ title, images }) => {
 export default function GalerieEpicesComponent() {
   const epices = [
     {
-      title: "Épices Exotiques",
-      images: ["/images/bgv1.jpg", "/images/bgv2.jpg", "/images/bgv1.jpg"],
+      title: "Cannelle de Madagascar",
+      images: ["/img/canl1.jpg", "/img/canl2.jpg", "/img/canl3.jpg"],
     },
     {
-      title: "Mélanges Signature",
-      images: ["/images/bgv2.jpg", "/images/bgv2.jpg", "/images/bgv1.jpg"],
+      title: "Gingembre Frais",
+      images: ["/img/ging1.jpg", "/img/ging3.jpg", "/img/ging4.jpg"],
     },
     {
-      title: "Épices Bio",
-      images: ["/images/bgv3.jpg", "/images/bgv2.jpg", "/images/bgv1.jpg"],
+      title: "Oignon d'Ail",
+      images: ["/img/ail1.jpg", "/img/ail2.jpg", "/img/ail3.jpg"],
     },
     {
-      title: "Épices Fumées",
-      images: ["/images/bgv4.jpg", "/images/bgv2.jpg", "/images/bgv1.jpg"],
+      title: "Poivre de Madagascar",
+      images: ["/img/pvr1.jpg", "/img/pvr3.jpg", "/img/pvr5.jpg"],
     },
   ];
 

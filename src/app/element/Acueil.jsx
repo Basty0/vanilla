@@ -104,7 +104,7 @@ export default function Acueil() {
             <div className="grid md:grid-cols-2 gap-8 grid-cols-1 justify-center items-center ">
               <div className="">
                 <h1 className="text-6xl font-bold mb-4 ">
-                  La meilleure vanille de Madagascar
+                  L'Art de la Vanille de Madagascar, à Votre Portée
                 </h1>
                 <p className="text-xl mb-4 ">
                   Explorez notre collection de vanille, soigneusement cultivée
